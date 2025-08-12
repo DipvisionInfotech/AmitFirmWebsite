@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X, Plus, Minus, Building2 } from "lucide-react";
+import Logosection from "./Logosection";
 
 // Main App component containing the Navbar
 const Navbar = () => {
@@ -136,18 +137,8 @@ const Navbar = () => {
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
-        <div className="lg:hidden flex justify-between p-4">
-          <div className="flex items-center space-x-3">
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-2 rounded-xl">
-              <Building2 className="w-8 h-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gray-900">
-                Amit P Kumar & Co.
-              </h1>
-              <p className="text-sm text-gray-600">Chartered Accountants</p>
-            </div>
-          </div>
+        <div className="lg:hidden flex justify-between p-4 bg-white">
+          <Logosection />
           <button
             onClick={toggleMenu}
             className="text-gray-700 hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 rounded p-1 z-10"
