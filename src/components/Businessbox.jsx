@@ -1,8 +1,6 @@
-import React from "react";
-import { Fragment } from "react";
+import React, { useState, useEffect } from "react";
 
 const Businessbox = () => {
-  // Array of service objects with titles, descriptions, and SVG icons
   const services = [
     {
       title: "Foreign Company Registration",
@@ -284,54 +282,130 @@ const Businessbox = () => {
     },
   ];
 
+  const [itemsToShow, setItemsToShow] = useState(3);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const totalItems = services.length;
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) setItemsToShow(3);
+      else if (window.innerWidth >= 768) setItemsToShow(2);
+      else setItemsToShow(1);
+      setCurrentIndex(0); // Reset to first slide on resize
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const maxIndex = Math.max(0, totalItems - itemsToShow);
+
+  const nextSlide = () =>
+    setCurrentIndex((i) => Math.min(i + itemsToShow, maxIndex));
+  const prevSlide = () => setCurrentIndex((i) => Math.max(i - itemsToShow, 0));
+
   return (
-    <div className="min-h-screen font-sans bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    // <div className="min-h-screen font-sans bg-gray-50 py-12 px-4">
+    <div className="font-sans bg-gray-50 py-12 px-4 overflow-hidden">
       <div className="max-w-7xl mx-auto text-center">
-        {/* Main title */}
         <h2 className="text-3xl sm:text-4xl font-bold text-gray-800 mb-12">
           Business Registrations
         </h2>
 
-        {/* Grid of service cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-2xl shadow-lg transition-transform transform hover:scale-105 duration-300 flex flex-col items-center text-center"
-            >
-              {/* Icon */}
-              <div className="flex-shrink-0 mb-4">{service.icon}</div>
-
-              {/* Title */}
-              <h3 className="text-xl font-bold text-gray-800 mb-2">
-                {service.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-gray-600 leading-relaxed mb-4">
-                {service.description}
-              </p>
-
-              {/* Read More arrow */}
-              <div className="mt-auto">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="text-gray-600 transform group-hover:translate-x-1 transition-transform duration-300"
-                >
-                  <path d="M5 12h14" />
-                  <path d="M12 5l7 7-7 7" />
-                </svg>
+        {/* Carousel Container */}
+        <div className="relative overflow-hidden">
+          {/* Slides Track */}
+          <div
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{
+              transform: `translateX(-${(currentIndex * 100) / itemsToShow}%)`,
+            }}
+          >
+            {services.map((service, idx) => (
+              <div
+                key={idx}
+                className="flex-shrink-0 p-4"
+                style={{ flex: `0 0 ${100 / itemsToShow}%` }} // ✅ Correct per-item width
+              >
+                <div className="h-full bg-white p-6 rounded-2xl shadow-lg flex flex-col items-center text-center">
+                  <div className="mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-bold text-gray-800 mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+                  <div className="mt-auto">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-gray-600"
+                    >
+                      <path d="M5 12h14" />
+                      <path d="M12 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Left Arrow */}
+          <button
+            onClick={prevSlide}
+            disabled={currentIndex === 0}
+            className={`absolute top-1/2 left-2 md:left-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md ${
+              currentIndex === 0
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-200"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-gray-800"
+            >
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
+          </button>
+
+          {/* Right Arrow */}
+          <button
+            onClick={nextSlide}
+            disabled={currentIndex >= maxIndex}
+            className={`absolute top-1/2 right-2 md:right-4 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-md ${
+              currentIndex >= maxIndex
+                ? "opacity-50 cursor-not-allowed"
+                : "hover:bg-gray-200"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-gray-800"
+            >
+              <path d="M9 18l6-6-6-6" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>

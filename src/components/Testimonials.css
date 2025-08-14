@@ -1,0 +1,12 @@
+.swiper-pagination {
+  bottom: 0px !important; /* moves bullets below */
+}
+
+.swiper-pagination-bullet {
+  background: #3b82f6; /* Tailwind blue-500 */
+  opacity: 0.6;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}

@@ -9,7 +9,7 @@ const Content = () => {
       <div className="max-w-6xl mx-auto">
         {/* Title of the section, now left-aligned */}
         <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-          CA in Jaipur
+          CA in Delhi
         </h2>
         {/* First paragraph of text */}
         <p className="text-lg text-gray-600 leading-relaxed mb-6">
@@ -18,14 +18,14 @@ const Content = () => {
           plays a crucial role in ensuring financial health. A Chartered
           Accountant is a professional who provides financial and tax services
           to individuals, businesses, and organizations. They are also known as
-          Certified Public Accountants (CAPs). CA in Jaipur works in all areas
-          of finance, including auditing, taxation, financial planning, etc.
+          Certified Public Accountants (CAPs). CA in Delhi works in all areas of
+          finance, including auditing, taxation, financial planning, etc.
         </p>
 
         {/* Second paragraph of text */}
         <p className="text-lg text-gray-600 leading-relaxed mb-8">
-          CA Goyal Mangal & Co., a Chartered Accountant firm, founded in 2011,
-          by CA Pulkit Goyal with the enthusiasm of providing the best
+          CA Amit P Kumar & Co., a Chartered Accountant firm, founded in 2011,
+          by CA Amit P Kumar with the enthusiasm of providing the best
           consultancy and expertise. The team consists of highly skilled and
           experienced professionals by offering tax consultancy, accounting, tax
           auditing and financial advisory to meet our diverse client needs.
@@ -34,7 +34,7 @@ const Content = () => {
           {/* "Read More" button is now left-aligned */}
           <a
             href="#"
-            className="inline-flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-transparent rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg"
+            className="inline-flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-400 border border-transparent rounded-full hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-lg"
           >
             Read More
             {/* SVG icon for the arrow */}

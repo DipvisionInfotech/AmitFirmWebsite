@@ -38,7 +38,7 @@ export default function Statssection() {
                   (index + 1) * 100
                 }`}
               >
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow duration-300">
+                <div className="bg-gradient-to-r from-blue-400 to-blue-500 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-lg transition-shadow duration-300">
                   <div className="text-white">{stat.icon}</div>
                 </div>
                 <div className="text-3xl font-bold text-gray-900 mb-2">

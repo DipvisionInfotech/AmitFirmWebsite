@@ -33,7 +33,7 @@ export default function Herosection() {
                 </div>
                 <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                   Your Trusted
-                  <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">
                     {" "}
                     Financial{" "}
                   </span>
@@ -47,11 +47,11 @@ export default function Herosection() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center">
+                <button className="bg-blue-400 text-white px-8 py-4 rounded-xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2">
                   Get Free Consultation
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </button>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-blue-600 hover:text-blue-600 transition-all duration-300">
+                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-blue-400 hover:text-blue-400 transition-all duration-300">
                   View Services
                 </button>
               </div>
@@ -76,7 +76,8 @@ export default function Herosection() {
                   : "translate-x-10 opacity-0"
               }`}
             >
-              <div className="relative bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-8 shadow-2xl">
+              <div className="relative bg-gradient-to-br from-blue-400 to-blue-500 rounded-3xl p-8 shadow-2xl">
+                {/* <div className="relative bg-blue-400 rounded-3xl p-8 shadow-2xl"> */}
                 <div className="space-y-6">
                   <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6">
                     <h3 className="text-white font-semibold text-lg mb-3">

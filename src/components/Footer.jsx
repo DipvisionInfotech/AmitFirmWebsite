@@ -1,5 +1,6 @@
 import React from "react";
-import { Phone, Mail, MapPin, Building2 } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
+import logo from "../assets/CA.png";
 
 export default function Footer() {
   return (
@@ -10,9 +11,7 @@ export default function Footer() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-2 rounded-xl">
-                  <Building2 className="w-6 h-6 text-white" />
-                </div>
+                <img src={logo} alt="Company Logo" className="h-17 w-auto" />
                 <div>
                   <h3 className="text-xl font-bold">Amit P Kumar & Co.</h3>
                   <p className="text-gray-400 text-sm">Chartered Accountants</p>

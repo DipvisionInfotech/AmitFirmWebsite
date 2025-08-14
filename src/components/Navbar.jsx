@@ -1,24 +1,17 @@
 import React, { useState } from "react";
-import { ChevronDown, Menu, X, Plus, Minus, Building2 } from "lucide-react";
+import { ChevronDown, Menu, X, Plus, Minus } from "lucide-react";
 import Logosection from "./Logosection";
+import logo from "../assets/WhatsApp.svg.webp";
 
-// Main App component containing the Navbar
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openCategory, setOpenCategory] = useState(null);
+  const [openSubCategory, setOpenSubCategory] = useState(null); // NEW: For inner accordions
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const toggleDropdown = (dropdownName) => {
-    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
-  };
-
-  const menuItems = [
+  const services = [
     {
-      name: "Start Business",
-      dropdown: [
+      name: "Business Registration",
+      sub: [
         { href: "#", label: "Company Registration" },
         { href: "#", label: "Private Limited Company Registration" },
         { href: "#", label: "Public Limited Company Registration" },
@@ -29,6 +22,11 @@ const Navbar = () => {
         { href: "#", label: "Foreign Company Registration" },
         { href: "#", label: "Partnership Registration" },
         { href: "#", label: "Sole Proprietorship Registration" },
+      ],
+    },
+    {
+      name: "Licenses",
+      sub: [
         { href: "#", label: "GST Registration" },
         { href: "#", label: "FSSAI Registration" },
         { href: "#", label: "Import Export Code" },
@@ -42,7 +40,7 @@ const Navbar = () => {
     },
     {
       name: "NGO",
-      dropdown: [
+      sub: [
         { href: "#", label: "NGO Registration" },
         { href: "#", label: "Section 8 NPO Registration" },
         { href: "#", label: "Trust Registration" },
@@ -55,146 +53,172 @@ const Navbar = () => {
     },
     {
       name: "Trademark",
-      dropdown: [
+      sub: [
         { href: "#", label: "Trademark Registration" },
         { href: "#", label: "Copyright Registration" },
         { href: "#", label: "Design Registration" },
         { href: "#", label: "Patent Registration" },
       ],
     },
-    { name: "Blog", href: "#" },
-    { name: "About Us", href: "#" },
-    { name: "Contact", href: "#" },
   ];
 
   return (
-    <nav className="bg-white bg p-4 sticky top-0 z-50">
-      <div className="container mx-auto flex items-center justify-between">
-        {/* Desktop Navigation */}
-        <div className="hidden lg:flex items-center space-x-8">
-          {menuItems.map((item, index) => (
-            <div key={index} className="relative group">
-              {item.dropdown ? (
-                <>
-                  <a
-                    href="#"
-                    className="text-gray-700 hover:text-blue-900 font-medium flex items-center"
-                  >
-                    {item.name}{" "}
-                    <ChevronDown className="w-4 h-4 ml-1 transition-transform duration-300 group-hover:rotate-180" />
-                  </a>
-                  <div
-                    className={`absolute top-full left-0 mt-5 ${
-                      item.dropdown.length > 9 ? "w-140" : "w-64"
-                    } bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50`}
-                  >
-                    {/* Responsive grid for the "Start Business" dropdown */}
-                    <div
-                      className={`${
-                        item.name === "Start Business"
-                          ? "grid grid-cols-2 gap-0"
-                          : "py-2"
-                      }`}
-                    >
-                      {item.dropdown.map((subItem, subIndex) => (
-                        <a
-                          key={subIndex}
-                          href={subItem.href}
-                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50"
-                        >
-                          {subItem.label}
-                        </a>
-                      ))}
+    <nav className="bg-white sticky top-0 z-50 shadow-md">
+      <div className="container mx-auto flex items-center justify-between p-1">
+        <Logosection />
+
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex space-x-6 items-center">
+          <li>
+            <a href="#" className="text-gray-700 hover:text-blue-900">
+              Home
+            </a>
+          </li>
+          <li className="relative group">
+            <button className="flex items-center text-gray-700 hover:text-blue-900">
+              Services <ChevronDown className="w-4 h-4 ml-1" />
+            </button>
+            <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[200px]">
+              <ul>
+                {services.map((cat, idx) => (
+                  <li key={idx} className="relative group/item">
+                    <div className="px-4 py-2 hover:bg-blue-100 flex justify-between">
+                      {cat.name}
+                      {cat.sub.length > 0 && (
+                        <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                      )}
                     </div>
-                  </div>
-                </>
-              ) : (
-                <a
-                  href={item.href}
-                  className="text-gray-700 hover:text-blue-900 font-medium"
-                >
-                  {item.name}
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile menu button */}
-        <div className="lg:hidden">
-          <button
-            onClick={toggleMenu}
-            className="text-gray-700 hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 rounded p-1 z-10"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Content */}
-      <div
-        className={`fixed inset-0 bg-white h-screen transition-transform duration-300 z-40 lg:hidden ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="lg:hidden flex justify-between p-4 bg-white">
-          <Logosection />
-          <button
-            onClick={toggleMenu}
-            className="text-gray-700 hover:text-blue-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 rounded p-1 z-10"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-        <div className="p-4 pt-4 flex flex-col space-y-4">
-          {menuItems.map((item, index) => (
-            <div key={index}>
-              {item.dropdown ? (
-                <div>
-                  <button
-                    onClick={() => toggleDropdown(item.name)}
-                    className="w-full text-left text-lg font-medium text-gray-800 py-2 flex justify-between items-center"
-                  >
-                    {item.name}
-                    {openDropdown === item.name ? (
-                      <Minus className="w-5 h-5" />
-                    ) : (
-                      <Plus className="w-5 h-5" />
+                    {cat.sub.length > 0 && (
+                      <div className="absolute top-0 left-full bg-white shadow-lg rounded-md opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200">
+                        <ul className="min-w-[300px] py-2">
+                          {cat.sub.map((sub, i2) => (
+                            <li key={i2}>
+                              <a
+                                href={sub.href}
+                                className="block px-4 py-2 text-sm hover:bg-blue-100"
+                              >
+                                {sub.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     )}
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openDropdown === item.name
-                        ? "max-h-96 opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <div className="pl-4 border-l border-gray-200 mt-2">
-                      {item.dropdown.map((subItem, subIndex) => (
-                        <a
-                          key={subIndex}
-                          href={subItem.href}
-                          className="block text-gray-600 hover:text-blue-900 py-1"
-                        >
-                          {subItem.label}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <a
-                  href={item.href}
-                  className="block text-lg font-medium text-gray-800 py-2"
-                >
-                  {item.name}
-                </a>
-              )}
+                  </li>
+                ))}
+              </ul>
             </div>
+          </li>
+          <li>
+            <a href="#" className="text-gray-700 hover:text-blue-900">
+              About Us
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-gray-700 hover:text-blue-900">
+              Insights
+            </a>
+          </li>
+          <li>
+            <a href="#" className="text-gray-700 hover:text-blue-900">
+              Contact Us
+            </a>
+          </li>
+        </ul>
+
+        {/* WhatsApp Button (Desktop) */}
+        <div className="hidden md:flex items-center space-x-6">
+          <button className="flex items-center space-x-1 bg-gradient-to-r from-blue-400 to-indigo-500 text-white px-3 py-3 rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+            <img src={logo} alt="WhatsApp Logo" className="w-6 h-6" />
+            <span className="font-medium">‪+91 9999999999‬</span>
+          </button>
+        </div>
+
+        {/* Mobile Hamburger */}
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="lg:hidden text-gray-700 hover:text-blue-900"
+        >
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-white min-h-screen border-t border-gray-200 overflow-y-auto max-h-[80vh]">
+          <ul className="px-4 py-2 space-y-2">
+            <li>
+              <a href="#" className="block py-2">
+                Home
+              </a>
+            </li>
+
+            {/* Services Accordion */}
+            <li>
+              <button
+                onClick={() =>
+                  setOpenCategory(
+                    openCategory === "services" ? null : "services"
+                  )
+                }
+                className="flex justify-between w-full py-2"
+              >
+                Services {openCategory === "services" ? <Minus /> : <Plus />}
+              </button>
+
+              {openCategory === "services" && (
+                <div className="pl-4">
+                  {services.map((cat, idx) => (
+                    <CategoryAccordion
+                      key={idx}
+                      category={cat}
+                      isOpen={openSubCategory === idx}
+                      onToggle={() =>
+                        setOpenSubCategory(openSubCategory === idx ? null : idx)
+                      }
+                    />
+                  ))}
+                </div>
+              )}
+            </li>
+            <li>
+              <a href="#" className="block py-2">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block py-2">
+                Insights
+              </a>
+            </li>
+            <li>
+              <a href="#" className="block py-2">
+                Contact Us
+              </a>
+            </li>
+          </ul>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+const CategoryAccordion = ({ category, isOpen, onToggle }) => {
+  return (
+    <div>
+      <button onClick={onToggle} className="flex justify-between w-full py-2">
+        {category.name} {isOpen ? <Minus /> : <Plus />}
+      </button>
+      {isOpen && category.sub.length > 0 && (
+        <div className="pl-4">
+          {category.sub.map((sub, idx) => (
+            <a key={idx} href={sub.href} className="block py-1">
+              {sub.label}
+            </a>
           ))}
         </div>
-      </div>
-    </nav>
+      )}
+    </div>
   );
 };
 
