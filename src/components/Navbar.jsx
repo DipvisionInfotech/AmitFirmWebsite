@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, Menu, X, Plus, Minus } from "lucide-react";
+import { Link } from "react-router-dom";
 import Logosection from "./Logosection";
 import logo from "../assets/WhatsApp.svg.webp";
 
@@ -12,52 +13,58 @@ const Navbar = () => {
     {
       name: "Business Registration",
       sub: [
-        { href: "#", label: "Company Registration" },
-        { href: "#", label: "Private Limited Company Registration" },
-        { href: "#", label: "Public Limited Company Registration" },
-        { href: "#", label: "Limited Liability Partnership Registration" },
-        { href: "#", label: "One Person Company Registration" },
-        { href: "#", label: "Nidhi Company Registration" },
-        { href: "#", label: "Producer Company Registration" },
-        { href: "#", label: "Foreign Company Registration" },
-        { href: "#", label: "Partnership Registration" },
-        { href: "#", label: "Sole Proprietorship Registration" },
+        { to: "company-registration/", label: "Company Registration" },
+        {
+          to: "private-limited-company/",
+          label: "Private Limited Company Registration",
+        },
+        {
+          to: "public-limited-company/",
+          label: "Public Limited Company Registration",
+        },
+        { to: "#", label: "Limited Liability Partnership Registration" },
+        { to: "#", label: "One Person Company Registration" },
+        { to: "#", label: "Nidhi Company Registration" },
+        { to: "#", label: "Producer Company Registration" },
+        { to: "#", label: "Foreign Company Registration" },
+        { to: "#", label: "Partnership Registration" },
+        { to: "#", label: "Sole Proprietorship Registration" },
       ],
     },
     {
       name: "Licenses",
       sub: [
-        { href: "#", label: "GST Registration" },
-        { href: "#", label: "FSSAI Registration" },
-        { href: "#", label: "Import Export Code" },
-        { href: "#", label: "ISO Certification" },
-        { href: "#", label: "RERA Registration" },
-        { href: "#", label: "MSME Udyam Registration" },
-        { href: "#", label: "Shop Act Registration" },
-        { href: "#", label: "Business Registration Number (BRN)" },
-        { href: "#", label: "Startup Registration" },
+        { to: "#", label: "GST Registration" },
+        { to: "#", label: "FSSAI Registration" },
+        { to: "#", label: "Import Export Code" },
+        { to: "#", label: "ISO Certification" },
+        { to: "#", label: "RERA Registration" },
+        { to: "#", label: "MSME Udyam Registration" },
+        { to: "#", label: "Shop Act Registration" },
+        { to: "#", label: "Business Registration Number (BRN)" },
+        { to: "#", label: "Startup Registration" },
       ],
     },
     {
       name: "NGO",
       sub: [
-        { href: "#", label: "NGO Registration" },
-        { href: "#", label: "Section 8 NPO Registration" },
-        { href: "#", label: "Trust Registration" },
-        { href: "#", label: "Society Registration" },
-        { href: "#", label: "NGO Darpan Registration" },
-        { href: "#", label: "FCRA Registration" },
-        { href: "#", label: "80G 12A Registration" },
-        { href: "#", label: "Corporate Social Responsibility" },
+        { to: "#", label: "NGO Registration" },
+        { to: "#", label: "Section 8 NPO Registration" },
+        { to: "#", label: "Trust Registration" },
+        { to: "#", label: "Society Registration" },
+        { to: "#", label: "NGO Darpan Registration" },
+        { to: "#", label: "FCRA Registration" },
+        { to: "#", label: "80G 12A Registration" },
+        { to: "#", label: "Corporate Social Responsibility" },
       ],
     },
     {
       name: "Trademark",
       sub: [
-        { href: "#", label: "Trademark Registration" },
-        { href: "#", label: "Copyright Registration" },
-        { href: "#", label: "Design Registration" },
-        { href: "#", label: "Patent Registration" },
+        { to: "#", label: "Trademark Registration" },
+        { to: "#", label: "Copyright Registration" },
+        { to: "#", label: "Design Registration" },
+        { to: "#", label: "Patent Registration" },
       ],
     },
   ];
@@ -70,35 +77,35 @@ const Navbar = () => {
         {/* Desktop Menu */}
         <ul className="hidden lg:flex space-x-6 items-center">
           <li>
-            <a href="#" className="text-gray-700 hover:text-blue-900">
+            <Link to="/" className="text-gray-700 hover:text-blue-900">
               Home
-            </a>
+            </Link>
           </li>
           <li className="relative group">
             <button className="flex items-center text-gray-700 hover:text-blue-900">
-              Services <ChevronDown className="w-4 h-4 ml-1" />
+              Services <ChevronDown className="w-4 h-4 ml-1 mt-1" />
             </button>
             <div className="absolute top-full left-0 mt-2 bg-white shadow-lg rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 min-w-[200px]">
               <ul>
                 {services.map((cat, idx) => (
                   <li key={idx} className="relative group/item">
-                    <div className="px-4 py-2 hover:bg-blue-100 flex justify-between">
+                    <div className="px-4 py-2 text-gray-700 hover:bg-blue-100 flex justify-between">
                       {cat.name}
                       {cat.sub.length > 0 && (
-                        <ChevronDown className="w-3 h-3 rotate-[-90deg]" />
+                        <ChevronDown className="w-4 h-4 mt-1 rotate-[-90deg]" />
                       )}
                     </div>
                     {cat.sub.length > 0 && (
-                      <div className="absolute top-0 left-full bg-white shadow-lg rounded-md opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200">
+                      <div className="absolute top-0 left-full bg-white shadow-lg rounded-md opacity-0 invisible group-hover/item:opacity-100 group-hover/item:visible transition-all duration-200 text-gray-700">
                         <ul className="min-w-[300px] py-2">
                           {cat.sub.map((sub, i2) => (
                             <li key={i2}>
-                              <a
-                                href={sub.href}
+                              <Link
+                                to={sub.to}
                                 className="block px-4 py-2 text-sm hover:bg-blue-100"
                               >
                                 {sub.label}
-                              </a>
+                              </Link>
                             </li>
                           ))}
                         </ul>
@@ -110,19 +117,27 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            <a href="#" className="text-gray-700 hover:text-blue-900">
+            <Link to="/clients" className="text-gray-700 hover:text-blue-900">
+              Our Clients
+            </Link>
+          </li>
+          <li>
+            <Link to="about-us/" className="text-gray-700 hover:text-blue-900">
               About Us
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#" className="text-gray-700 hover:text-blue-900">
-              Insights
-            </a>
+            <Link to="blogs/" className="text-gray-700 hover:text-blue-900">
+              Blogs
+            </Link>
           </li>
           <li>
-            <a href="#" className="text-gray-700 hover:text-blue-900">
+            <Link
+              to="contact-us/"
+              className="text-gray-700 hover:text-blue-900"
+            >
               Contact Us
-            </a>
+            </Link>
           </li>
         </ul>
 
@@ -148,9 +163,13 @@ const Navbar = () => {
         <div className="md:hidden bg-white min-h-screen border-t border-gray-200 overflow-y-auto max-h-[80vh]">
           <ul className="px-4 py-2 space-y-2">
             <li>
-              <a href="#" className="block py-2">
+              <Link
+                to="/"
+                className="block py-2"
+                onClick={() => setMobileOpen(false)}
+              >
                 Home
-              </a>
+              </Link>
             </li>
 
             {/* Services Accordion */}
@@ -176,25 +195,47 @@ const Navbar = () => {
                       onToggle={() =>
                         setOpenSubCategory(openSubCategory === idx ? null : idx)
                       }
+                      closeMenu={() => setMobileOpen(false)} // pass close function
                     />
                   ))}
                 </div>
               )}
             </li>
             <li>
-              <a href="#" className="block py-2">
+              <Link
+                to="about-us/"
+                className="block py-2"
+                onClick={() => setMobileOpen(false)}
+              >
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2">
-                Insights
-              </a>
+              <Link
+                to="clients/"
+                className="block py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                Our Clients
+              </Link>
             </li>
             <li>
-              <a href="#" className="block py-2">
+              <Link
+                to="blogs/"
+                className="block py-2"
+                onClick={() => setMobileOpen(false)}
+              >
+                Blogs
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="contact-us/"
+                className="block py-2"
+                onClick={() => setMobileOpen(false)}
+              >
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -203,7 +244,7 @@ const Navbar = () => {
   );
 };
 
-const CategoryAccordion = ({ category, isOpen, onToggle }) => {
+const CategoryAccordion = ({ category, isOpen, onToggle, closeMenu }) => {
   return (
     <div>
       <button onClick={onToggle} className="flex justify-between w-full py-2">
@@ -212,9 +253,14 @@ const CategoryAccordion = ({ category, isOpen, onToggle }) => {
       {isOpen && category.sub.length > 0 && (
         <div className="pl-4">
           {category.sub.map((sub, idx) => (
-            <a key={idx} href={sub.href} className="block py-1">
+            <Link
+              to={sub.to}
+              key={idx}
+              className="block py-1"
+              onClick={closeMenu}
+            >
               {sub.label}
-            </a>
+            </Link>
           ))}
         </div>
       )}

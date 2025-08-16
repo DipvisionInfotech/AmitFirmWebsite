@@ -10,11 +10,11 @@ import Ctasection from "./Ctasection";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Testimonials from "./Testimonials";
+import CompanyRegistrationPage from "../pages/CompanyRegistrationPage";
 
 const Homepage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 font-sans">
-      <Navbar />
       <Banner />
       <Content />
       <Herosection />
@@ -25,7 +25,6 @@ const Homepage = () => {
       <Servicessection />
       <Testimonials />
       <Ctasection />
-      <Footer />
     </div>
   );
 };
