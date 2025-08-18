@@ -1,5 +1,6 @@
 import React from "react";
 import bannerImage from "../assets/CA.jpg";
+import { Link } from "react-router-dom";
 
 // Main Banner component containing the hero banner
 const Banner = () => {
@@ -28,8 +29,8 @@ const Banner = () => {
             </p>
 
             {/* "Contact Us" button with arrow icon */}
-            <a
-              href="#"
+            <Link
+              to="contan  ct-us/"
               className="inline-flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-400 border border-transparent rounded-full hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-lg"
             >
               Contact Us
@@ -48,7 +49,7 @@ const Banner = () => {
                   d="M14 5l7 7m0 0l-7 7m7-7H3"
                 ></path>
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

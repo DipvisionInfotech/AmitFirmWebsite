@@ -1,5 +1,6 @@
 import React from "react";
 import { Phone, Calendar } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Ctasection() {
   return (
@@ -22,10 +23,13 @@ export default function Ctasection() {
                 <Phone className="w-5 h-5 inline mr-2" />
                 Call +91 9999999999
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-blue-400 transition-all duration-300">
+              <Link
+                className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-blue-400 transition-all duration-300"
+                to="contact-us/"
+              >
                 <Calendar className="w-5 h-5 inline mr-2" />
                 Schedule Consultation
-              </button>
+              </Link>
             </div>
           </div>
         </div>
