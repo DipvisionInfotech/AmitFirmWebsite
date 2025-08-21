@@ -1,4 +1,6 @@
 import React from "react";
+import { motion } from "framer-motion";
+import ContactForm from "./ContactForm";
 
 export default function Rightsection() {
   return (
@@ -6,34 +8,7 @@ export default function Rightsection() {
       <h2 className="text-xl font-semibold text-gray-800 mb-4">
         Book an Appointment
       </h2>
-      <form className="space-y-4">
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <input
-          type="email"
-          placeholder="Email Address"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <input
-          type="tel"
-          placeholder="Phone Number"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
-        <textarea
-          placeholder="Your Message"
-          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
-          rows="4"
-        ></textarea>
-        <button
-          type="submit"
-          className="w-full bg-blue-400 hover:bg-blue-500 text-white font-semibold py-2 rounded-lg"
-        >
-          Submit
-        </button>
-      </form>
+      <ContactForm />
 
       {/* Services */}
       <div className="mt-8">

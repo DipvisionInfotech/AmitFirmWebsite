@@ -30,7 +30,7 @@ const Banner = () => {
 
             {/* "Contact Us" button with arrow icon */}
             <Link
-              to="contan  ct-us/"
+              to="contact-us/"
               className="inline-flex items-center justify-center px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-400 border border-transparent rounded-full hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 shadow-lg"
             >
               Contact Us
